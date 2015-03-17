@@ -41,3 +41,17 @@
 
 %%% Оглавление %%%
 \renewcommand{\cftchapdotsep}{\cftdotsep}
+
+%%% Нумерация определений %%%
+\newcounter{DefCounter}
+\setcounter{DefCounter}{0}
+
+\newcommand{\mydefinition}[1]{
+	\stepcounter{DefCounter}
+	\noindent
+	\textbf{Определение\,\theDefCounter.} #1
+}
+
+\newcommand{\unsure}[1]{
+	\textcolor{red}{#1}
+}
