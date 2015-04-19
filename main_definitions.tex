@@ -3,13 +3,13 @@
 \section{Определение L-графа} % (fold)
 %\label{sect2_1}
 \mydefinition{Пусть $\Sigma_($ и $\Sigma_)$ --- непересекающиеся алфавиты, и существует биективное отображение $\phi:\Sigma_( \rightarrow \Sigma_)$. Тогда назовём непустое множество $P \subseteq \Sigma_( \times \Sigma_)$ \textit{D-множеством}.}
-\\
+
 \mydefinition{Пуст $P$ - \textit{D}-множество. Тогда назовём язык $L_P$, порождаемый грамматикой $S \rightarrow \Lambda | aSbS, (a,b)\in P$, \textit{D-языком} (над \textit{D}-множеством $P$).}
-\\
+
 \mydefinition{
 	Пусть $\Delta = \Sigma_( \cup \Sigma_)$. Определим отображение $\mu: \Delta^* \rightarrow \Delta^*$. Пусть $\omega \in \Delta^*$. Рассмотрим множество $W^\prime=\{(\omega_1,\omega_2)|\omega_1,\omega_2 \in \Delta^*, (a,b) \in P, \omega = \omega_1ab\omega_2\}$. Если $W^\prime$ пусто, то $\mu(\omega) = \omega$, иначе среди всех $\mu(\omega) = \mu(\omega_1\omega_2)$, где $|\omega_1|$ минимальна по всем парам $(\omega_1,\omega_2)\in W^\prime$. Назовём $\mu$ \textit{стирающим отображением}.
 }
-\\
+
 \mydefinition{
 	\textit{L-графом} назовём восьмёрку\\ $G=(V,E,\Sigma,\Sigma_),\Sigma_(,P,S,F)$, где
 	\begin{itemize}
@@ -26,6 +26,7 @@
 
 % section (end)
 \section{Понятие памяти L-графа} % (fold)
+
 \mydefinition{
 	Основные понятие, такие как \textit{Sentences}, \textit{sCore}, введем как у Касимовой.
 }

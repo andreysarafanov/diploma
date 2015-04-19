@@ -23,3 +23,5 @@
 *.synctex.gz 
 *.tex~
 *.pdf
+*.sh
+
