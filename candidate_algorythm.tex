@@ -2,32 +2,28 @@
 
 \section{Построение всех (w,d)-остовных памятей L-графа} 
 \label{sect3_1}
-\mydefinition{
-	Будем говорить, что в маршруте $T$ \textit{фигурирует} память $m=(v,\gamma)$, если $T$ можно представить в виде $T = T_1T_2$, где $end(T_1) = v, \mu(T) = \gamma$. Обозначим это соотношение как $HasMemory(T,m)$. Если в этом определении $T_2 = \epsilon$, то будем говорить, что \textit{память $T$ равна $m$} ($Mem(T) = m$). \unsure{Или Mem два раза лучше не использовать?}
-}
-
-\mydefinition{
-	\textit{Множеством (w,d)-остовных памятей} \LGraphа G будем называть множество $Mem(G,w,d) = \{(v,\gamma) | \exists T \in sCore(G,w,d): HasMemory(T,(v,\gamma))\}$.
-}
-
 Тут должен быть алгоритм построения этого множества, но простой обход в глубину/ширину, естественно, не подходит. Наличие хотя бы одного цикла приведет к зацикливанию.
 
 \section{Построение графа (w,d)-остовных памятей L-графа}
 \label{sect3_2}
+
 \mydefinition{
-	\textit{Графом $(w,d)$-остовных памятей} \LGraphа $G(V,E^\prime,\Sigma,\Sigma_(,\Sigma_),P,S,F)$ назовём пятёрку $MemGraph(G,w,d) = (M,F,S,E,\Sigma)$, где
+	\textit{Графом $(w,d)$-остовных памятей} \LGraphа $G(V,E,\Sigma,\Sigma_(,\Sigma_),P,S,F)$ назовём пятёрку $M(V_M,F_M,S_M,E_M,\Sigma_M)$, где
 	\begin{itemize}
-		\item $M = Mem(G,w,d)$ --- множество вершин графа, $S \in M$ - начальная вершина, $F \subseteq V$ --- множество заключительных вершин;
-
-		\item $\Sigma$ - алфавит входных символов;
-
-		\item множество $E$ описывает дуги и их символьные пометки: $E \subseteq \{(m_1,m_2,\alpha)|m_1,m_2\in M, \alpha \in \Sigma \cup \{\epsilon\}\}$.
+		\item $V_M = Mem(G,w,d)$ --- множество вершин графа,
+		\item $S_M = (S,\epsilon) \in V_M$ - начальная вершина,
+		\item $F = \{(v,m) \in V_M|v \in F\}$ --- множество заключительных вершин,
+		\item $\Sigma$ - алфавит входных символов,
+		\item множество $E_M$ описывает дуги и их символьные пометки: $E_M = \{((v_1,\gamma_1),(v_2, \gamma_2),\alpha)|(v_1,\gamma_1) \in V_M,(v_2, \gamma_2)\in V_M, \alpha \in \Sigma \cup \{\epsilon\}, \exists \beta \in \Sigma_( \cup \Sigma_): \mu(\gamma_1\beta) = \gamma_2, (v_1,v_2,\alpha,\beta) \in E\}$.
 	\end{itemize}
+	Будем обозначать граф $(w,d)$-остовных памятей графа $G$ как $MemGraph(G,w,d)$.
 }
 
-В роли вершин графа выступает множество $(w,d)$-остовных памятей \LGraphа $G$. Опишем алгоритм \unsure{создания} множества $E$.
-Для каждой вершины $m_1=(v_1,\gamma_1) \in M$ рассмотрим поочередно все дуги из $E^\prime$ вида $(v_1, v_2, \alpha, \beta)$. Для каждой вершины $m_2=(v_2, \gamma_2) \in M$, такой что $\mu(\gamma_1\beta) = \gamma_2$ добавим в $E$ дугу $(m_1,m_2,\alpha)$. \unsure{Получилось криво, к тому же не ясно ещё, так ли стоит этот граф определять. Альтернативный вариант - добавлять дугу $(m_1,m_2,\alpha)$, если $\exists T \in sCore(G,w,d), T = T_1T_2T_3, mem(T_1) = m_1, mem(T_1T_2) = m_2, \omega(T_1T_2) = \omega(T_1)\beta$}
-
 \section{Построение графа-кандидата}
-На основе $M_1 = MemGraph(G,1,1)$ и $M_2 = MemGraph(G,2,2)$ построим граф недетерминированного конечного автомата $Cand(G)$. Обозначим $ToRemove(G) = \{m|m \in M_2, m \not\in M_1\}$. Определим отображение $Reduction: ToRemove(G) \rightarrow M_1$.
+Опишем построение на основе детерминированного \LGraphа $G(V,E,\Sigma,\Sigma_(,\Sigma_),P,S,F)$ графа недетерминированного конечного автомата $Cand(G)$.
+
+Пусть $M_1(V_{M_1},F_{M_1},S_M,E_{M_1},\Sigma) = MemGraph(G,1,1)$ и $M_2(V_{M_2},F_{M_2},S_M,E_{M_2},\Sigma) = MemGraph(G,2,2)$. 
+Введём отображение $PrevMemory: V_{M_2} \rightarrow V_{M_1} \cup V_{M_2} $
+Обозначим $ToRemove(G) = \{m|m \in V_{M_2}, m \not\in V_{M_1}\}$. 
+
 \clearpage

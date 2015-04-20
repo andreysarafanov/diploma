@@ -23,12 +23,25 @@
 % section (end)
 \section{Понятие ядра L-графа} % (fold)
 %\label{sect2_2}
-
+\mydefinition{
+	Основные понятие, такие как \textit{Sentences}, \textit{sCore}, введем как у Касимовой.
+}
 % section (end)
 \section{Понятие памяти L-графа} % (fold)
 
 \mydefinition{
-	Основные понятие, такие как \textit{Sentences}, \textit{sCore}, введем как у Касимовой.
+	Памятью \LGraphа $G(V,E,\Sigma,\Sigma_(,\Sigma_),P,S,F)$ будем называть пару $(v,\gamma)$, где
+	\begin{itemize}
+		\item $v \in V$ - вершина графа G,
+		\item $\gamma \in \Sigma^*$ - цепочка из входных символов.
+	\end{itemize}
+}
+\mydefinition{
+	Будем говорить, что в маршруте $T$ \textit{фигурирует} память $m=(v,\gamma)$, если $T$ можно представить в виде $T = T_1T_2$, где $end(T_1) = v, \mu(T_1) = \gamma$. Обозначим это соотношение как $HasMemory(T,m)$. Если в этом определении $T_2 = \epsilon$, то будем говорить, что \textit{память маршрута $T$ равна $m$} ($Mem(T) = m$).
+}
+
+\mydefinition{
+	\textit{Множеством (w,d)-остовных памятей} \LGraphа G будем называть множество $CoreMem(G,w,d) = \{(v,\gamma) | \exists T \in sCore(G,w,d): HasMemory(T,(v,\gamma))\}$.
 }
 %\label{sect2_3}
 

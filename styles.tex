@@ -52,6 +52,16 @@
 	\textbf{Определение\,\theDefCounter.} #1
 }
 
+%%% Нумерация теорем %%%
+\newcounter{ThCounter}
+\setcounter{ThCounter}{0}
+
+\newcommand{\mytheorem}[1]{
+    \stepcounter{ThCounter}
+    \noindent
+    \textbf{Определение\,\theThCounter.} #1
+}
+%%% Выделение красным цветом %%%
 \newcommand{\unsure}[1]{
 	\textcolor{red}{#1}
 }
